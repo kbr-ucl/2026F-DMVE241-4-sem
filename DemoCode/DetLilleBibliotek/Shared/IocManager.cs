@@ -9,12 +9,11 @@ public class IocManager
 {
     private static IServiceProvider? ServiceProvider;
 
-    public static ServiceProvider RegisterService(IConfiguration configuration)
+    public static ServiceProvider RegisterServices(IConfiguration configuration)
     {
         if (ServiceProvider is not null) return (ServiceProvider as ServiceProvider)!;
         var serviceProvider = new ServiceCollection()
-            .AddApplication()
-            .AddInfrastructure(configuration)
+            .AddBibliotekServices(configuration)
             .BuildServiceProvider();
 
         ServiceProvider = serviceProvider;

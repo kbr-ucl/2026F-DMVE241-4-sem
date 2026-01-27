@@ -4,7 +4,7 @@ namespace Infrastructure.QueryHandlers
 {
     public class MedlemQueryHandler : IMedlemQueries
     {
-        MedlemDto IMedlemQueries.GetMedlem(int guid)
+        MedlemDto IMedlemQueries.GetMedlem(Guid id)
         {
             throw new NotImplementedException();
         }

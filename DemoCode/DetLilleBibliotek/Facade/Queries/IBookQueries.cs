@@ -2,8 +2,8 @@
 {
     public interface IBookQueries
     {
-        BookDto GetMedlem(int guid);
-        IEnumerable<BookDto> GetMedlemmer();
+        BookDto GetBook(Guid id);
+        IEnumerable<BookDto> GetBooks();
     }
 
     public record BookDto(Guid BogId, string Isbn, string Titel, string Forfatter, bool ErHjemme);

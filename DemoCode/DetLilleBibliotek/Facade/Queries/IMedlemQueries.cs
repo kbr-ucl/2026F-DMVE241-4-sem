@@ -2,7 +2,7 @@
 {
     public interface IMedlemQueries
     {
-        MedlemDto GetMedlem(int guid);
+        MedlemDto GetMedlem(Guid id);
         IEnumerable<MedlemDto> GetMedlemmer();
     }
 

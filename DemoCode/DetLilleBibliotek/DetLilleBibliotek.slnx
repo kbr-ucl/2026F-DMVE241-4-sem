@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="Application/Application.csproj" />
+  <Project Path="BibliotekApi/BibliotekApi.csproj" Id="97aa53cf-20d8-4be9-bc0a-3bbbebca97b6" />
   <Project Path="Domain/Domain.csproj" />
   <Project Path="Facade/Facade.csproj" Id="d7030668-5782-45cd-ab07-3bcf93076dce" />
   <Project Path="Infrastructure/Infrastructure.csproj" Id="006e3cca-106c-459d-bd99-5f3e2b5ebf51" />
