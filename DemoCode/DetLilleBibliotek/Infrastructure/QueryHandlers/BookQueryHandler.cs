@@ -13,7 +13,10 @@ namespace Infrastructure.QueryHandlers
         }
         BookDto IBookQueries.GetBook(Guid id)
         {
-            throw new NotImplementedException();
+            var bog = _db.Bøger.Find(id);
+            if (bog == null) return null;
+
+                return new BookDto(bog.Id, bog.Isbn, bog.Titel, bog.Forfatter, !bog.ErUdlånt);
         }
 
         IEnumerable<BookDto> IBookQueries.GetBooks()
