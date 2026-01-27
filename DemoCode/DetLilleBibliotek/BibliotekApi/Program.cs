@@ -1,4 +1,5 @@
 using Facade.Queries;
+using Facade.UseCases;
 using Shared;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,5 +39,12 @@ app.MapGet("/medlemer", (IMedlemQueries medlemQuery) =>
     return medlemQuery.GetMedlemmer();
 })
 .WithName("GetMedlemmer");
+
+app.MapPost("/udlaanBog", (IUdlånBogUseCase udlånCommand, UdlånBogCommmandDto reservation) =>
+{
+    udlånCommand.LånAfBogTilMedlem(reservation);
+    return Results.Created();
+})
+.WithName("UdlånBogTilMedlem");
 
 app.Run();
