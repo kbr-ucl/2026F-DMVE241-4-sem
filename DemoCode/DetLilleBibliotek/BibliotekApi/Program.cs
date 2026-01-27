@@ -28,11 +28,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/books", (IBookQueries booksQuery) =>
+app.MapGet("/bøger", (IBogQueries booksQuery) =>
 {
-    return booksQuery.GetBooks();
+    return booksQuery.GetBøger();
 })
-.WithName("GetBooks");
+.WithName("GetBøger");
 
 app.MapGet("/medlemer", (IMedlemQueries medlemQuery) =>
 {
@@ -40,7 +40,7 @@ app.MapGet("/medlemer", (IMedlemQueries medlemQuery) =>
 })
 .WithName("GetMedlemmer");
 
-app.MapPost("/udlaanBog", (IUdlånBogUseCase udlånCommand, UdlånBogCommmandDto reservation) =>
+app.MapPost("/udlånBog", (IUdlånBogUseCase udlånCommand, UdlånBogCommmandDto reservation) =>
 {
     udlånCommand.LånAfBogTilMedlem(reservation);
     return Results.Created();

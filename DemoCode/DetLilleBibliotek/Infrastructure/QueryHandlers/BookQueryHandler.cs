@@ -3,7 +3,7 @@ using Infrastructure.Database;
 
 namespace Infrastructure.QueryHandlers
 {
-    public class BookQueryHandler : IBookQueries
+    public class BookQueryHandler : IBogQueries
     {
         private readonly BibliotekContext _db;
 
@@ -11,17 +11,17 @@ namespace Infrastructure.QueryHandlers
         {
             _db = db;
         }
-        BookDto IBookQueries.GetBook(Guid id)
+        BogDto IBogQueries.GetBog(Guid id)
         {
             var bog = _db.Bøger.Find(id);
             if (bog == null) return null;
 
-                return new BookDto(bog.Id, bog.Isbn, bog.Titel, bog.Forfatter, !bog.ErUdlånt);
+                return new BogDto(bog.Id, bog.Isbn, bog.Titel, bog.Forfatter, !bog.ErUdlånt);
         }
 
-        IEnumerable<BookDto> IBookQueries.GetBooks()
+        IEnumerable<BogDto> IBogQueries.GetBøger()
         {
-            return _db.Bøger.Select(b=> new BookDto(b.Id, b.Isbn, b.Titel, b.Forfatter, !b.ErUdlånt)).ToList();
+            return _db.Bøger.Select(b=> new BogDto(b.Id, b.Isbn, b.Titel, b.Forfatter, !b.ErUdlånt)).ToList();
         }
     }
 }

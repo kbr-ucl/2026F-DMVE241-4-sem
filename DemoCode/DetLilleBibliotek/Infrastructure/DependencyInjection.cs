@@ -14,7 +14,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<IBookQueries, BookQueryHandler>();
+        services.AddScoped<IBogQueries, BookQueryHandler>();
         services.AddScoped<IMedlemQueries, MedlemQueryHandler>();
         services.AddScoped<IBogRepository, BogRepository>();
         services.AddScoped<IMedlemsRepository, MedlemsRepository>();

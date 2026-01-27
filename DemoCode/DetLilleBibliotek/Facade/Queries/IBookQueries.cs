@@ -1,10 +1,10 @@
 ﻿namespace Facade.Queries
 {
-    public interface IBookQueries
+    public interface IBogQueries
     {
-        BookDto GetBook(Guid id);
-        IEnumerable<BookDto> GetBooks();
+        BogDto GetBog(Guid id);
+        IEnumerable<BogDto> GetBøger();
     }
 
-    public record BookDto(Guid BogId, string Isbn, string Titel, string Forfatter, bool ErHjemme);
+    public record BogDto(Guid BogId, string Isbn, string Titel, string Forfatter, bool ErHjemme);
 }
