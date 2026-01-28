@@ -4,6 +4,7 @@ namespace Application.InfrastructureFacade;
 
 public interface IMedlemsRepository
 {
-    Medlem HentPåId(Guid id);
-    void Gem(Medlem medlem);
+    Medlem? Hent(int medlemsNummer);
+    void Opret(Medlem medlem);
+    void Opdater(Medlem medlem);
 }

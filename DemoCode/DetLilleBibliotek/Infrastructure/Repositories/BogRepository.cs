@@ -1,18 +1,27 @@
 ﻿using Application.InfrastructureFacade;
 using Domain.Entities;
+using Infrastructure.Database;
 
 namespace Infrastructure.Repositories
 {
     public class BogRepository : IBogRepository
     {
-        void IBogRepository.Gem(Bog bog)
+        private readonly BibliotekContext _db;
+        
+        public BogRepository(BibliotekContext db)
         {
-            throw new NotImplementedException();
+            _db = db;
         }
 
-        Bog IBogRepository.HentPåId(Guid id)
+        void IBogRepository.Opret(Bog bog)
         {
-            throw new NotImplementedException();
+            _db.Bøger.Add(bog);
+            _db.SaveChanges();
+        }
+
+        Bog IBogRepository.Hent(string isbn)
+        {
+            return _db.Bøger.Find(isbn);
         }
     }
 }

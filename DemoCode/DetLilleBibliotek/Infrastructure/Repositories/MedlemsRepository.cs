@@ -12,13 +12,20 @@ namespace Infrastructure.Repositories
         {
             _db = db;
         }
-        void IMedlemsRepository.Gem(Medlem medlem)
+        void IMedlemsRepository.Opret(Medlem medlem)
         {
+            _db.Medlemmer.Add(medlem);
             _db.SaveChanges();
         }
-        Medlem IMedlemsRepository.HentPåId(Guid id)
+
+        Medlem? IMedlemsRepository.Hent(int medlemsNummer)
         {
-            return _db.Medlemmer.Find(id);
+            return _db.Medlemmer.Find(medlemsNummer);
+        }
+
+        void IMedlemsRepository.Opdater(Medlem medlem)
+        {
+            _db.SaveChanges();
         }
     }
 }

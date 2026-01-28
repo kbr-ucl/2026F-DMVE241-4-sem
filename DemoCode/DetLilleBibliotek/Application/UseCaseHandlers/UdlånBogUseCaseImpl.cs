@@ -1,5 +1,5 @@
-﻿using Facade.UseCases;
-using Application.InfrastructureFacade;
+﻿using Application.InfrastructureFacade;
+using Facade.UseCases;
 
 namespace Application.UseCaseHandlers;
 
@@ -19,29 +19,19 @@ public class UdlånBogUseCaseImpl : IUdlånBogUseCase
     void IUdlånBogUseCase.LånAfBogTilMedlem(UdlånBogCommmandDto commmandDto)
     {
         // 1. Hent data (Rehydrering)
-        var medlem = _medlemsRepository.HentPåId(commmandDto.MedlemsId);
-        var bog = _bogRepository.HentPåId(commmandDto.BogId);
+        var medlem = _medlemsRepository.Hent(commmandDto.Medlemsnummer);
+        var bog = _bogRepository.Hent(commmandDto.Isbn);
 
         if (medlem == null || bog == null) throw new Exception("Medlem eller bog findes ikke.");
 
         // 2. Aktiver Adfærd (Domain Logic)
-        try
-        {
-            // Vi beder medlemmet om at udføre handlingen.
-            // Hvis bogen er udlånt, eller medlemmet har for mange bøger,
-            // vil koden her kaste en fejl og stoppe.
-            medlem.LånBog(bog);
-        }
-        catch (InvalidOperationException ex)
-        {
-            // Send fejlbesked tilbage til brugeren
-            Console.WriteLine($"Kunne ikke låne bog: {ex.Message}");
-            return;
-        }
+
+        // Vi beder medlemmet om at udføre handlingen.
+        // Hvis bogen er udlånt, eller medlemmet har for mange bøger,
+        // vil koden her kaste en fejl og stoppe.
+        medlem.LånBog(bog);
 
         // 3. Gem tilstand (Persistering)
-        _medlemsRepository.Gem(medlem);
-
-        Console.WriteLine("Succes: Bogen er nu registreret som udlånt.");
+        _medlemsRepository.Opdater(medlem);
     }
 }

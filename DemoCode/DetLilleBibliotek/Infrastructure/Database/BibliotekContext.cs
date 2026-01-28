@@ -16,7 +16,13 @@ namespace Infrastructure.Database
         {
             modelBuilder.Entity<Bog>(entity =>
             {
-                entity.HasIndex(b => b.Isbn).IsUnique();
+                entity.HasKey(b => b.Isbn);
+            });
+
+            modelBuilder.Entity<Medlem>(entity =>
+            {
+                entity.HasKey(m => m.Medlemsnummer);
+                entity.Property(m => m.Medlemsnummer).ValueGeneratedNever();
             });
         }
     }

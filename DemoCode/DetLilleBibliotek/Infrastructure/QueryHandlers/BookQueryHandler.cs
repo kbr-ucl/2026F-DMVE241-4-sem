@@ -11,17 +11,17 @@ namespace Infrastructure.QueryHandlers
         {
             _db = db;
         }
-        BogDto IBogQueries.GetBog(Guid id)
+        BogDto IBogQueries.HentBog(string isbn)
         {
-            var bog = _db.Bøger.Find(id);
+            var bog = _db.Bøger.Find(isbn);
             if (bog == null) return null;
 
-                return new BogDto(bog.Id, bog.Isbn, bog.Titel, bog.Forfatter, !bog.ErUdlånt);
+                return new BogDto(bog.Isbn, bog.Titel, bog.Forfatter, !bog.ErUdlånt);
         }
 
-        IEnumerable<BogDto> IBogQueries.GetBøger()
+        IEnumerable<BogDto> IBogQueries.HentBøger()
         {
-            return _db.Bøger.Select(b=> new BogDto(b.Id, b.Isbn, b.Titel, b.Forfatter, !b.ErUdlånt)).ToList();
+            return _db.Bøger.Select(b=> new BogDto(b.Isbn, b.Titel, b.Forfatter, !b.ErUdlånt)).ToList();
         }
     }
 }

@@ -30,15 +30,15 @@ app.UseHttpsRedirection();
 
 app.MapGet("/bøger", (IBogQueries booksQuery) =>
 {
-    return booksQuery.GetBøger();
+    return booksQuery.HentBøger();
 })
-.WithName("GetBøger");
+.WithName("HentBøger");
 
 app.MapGet("/medlemer", (IMedlemQueries medlemQuery) =>
 {
-    return medlemQuery.GetMedlemmer();
+    return medlemQuery.HentMedlemmer();
 })
-.WithName("GetMedlemmer");
+.WithName("HentMedlemmer");
 
 app.MapPost("/udlånBog", (IUdlånBogUseCase udlånCommand, UdlånBogCommmandDto reservation) =>
 {
@@ -46,5 +46,19 @@ app.MapPost("/udlånBog", (IUdlånBogUseCase udlånCommand, UdlånBogCommmandDto res
     return Results.Created();
 })
 .WithName("UdlånBogTilMedlem");
+
+app.MapPost("/medlem", (IOpretMedlemUseCase opretCommand, OpretMedlemCommandDto medlem) =>
+    {
+        opretCommand.OpretMedlem(medlem);
+        return Results.Created();
+    })
+    .WithName("OpretMedlem");
+
+app.MapPost("/bog", (IOpretBogUseCase opretCommand, OpretBogCommandDto bog) =>
+    {
+        opretCommand.OpretBog(bog);
+        return Results.Created();
+    })
+    .WithName("OpretBog");
 
 app.Run();

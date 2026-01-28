@@ -10,6 +10,8 @@ public static class DependencyInjection
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services.AddScoped<IUdlånBogUseCase, UdlånBogUseCaseImpl>();
+        services.AddScoped<IOpretBogUseCase, OpretBogUseCaseImpl>();
+        services.AddScoped<IOpretMedlemUseCase, OpretMedlemUseCaseImpl>();
         return services;
     }
 }

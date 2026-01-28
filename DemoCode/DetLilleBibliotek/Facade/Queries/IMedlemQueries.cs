@@ -2,9 +2,9 @@
 {
     public interface IMedlemQueries
     {
-        MedlemDto GetMedlem(Guid id);
-        IEnumerable<MedlemDto> GetMedlemmer();
+        MedlemDto HentMedlem(string isbn);
+        IEnumerable<MedlemDto> HentMedlemmer();
     }
 
-    public record MedlemDto(Guid MedlemsId, string Navn);
+    public record MedlemDto(int Medlemsnummer, string Navn);
 }

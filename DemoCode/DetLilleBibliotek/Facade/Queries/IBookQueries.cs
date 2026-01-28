@@ -2,9 +2,9 @@
 {
     public interface IBogQueries
     {
-        BogDto GetBog(Guid id);
-        IEnumerable<BogDto> GetBøger();
+        BogDto HentBog(string isbn);
+        IEnumerable<BogDto> HentBøger();
     }
 
-    public record BogDto(Guid BogId, string Isbn, string Titel, string Forfatter, bool ErHjemme);
+    public record BogDto(string Isbn, string Titel, string Forfatter, bool ErHjemme);
 }

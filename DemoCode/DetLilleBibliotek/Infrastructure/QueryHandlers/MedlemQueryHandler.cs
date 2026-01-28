@@ -11,17 +11,17 @@ namespace Infrastructure.QueryHandlers
         {
             _db = db;
         }
-        MedlemDto IMedlemQueries.GetMedlem(Guid id)
+        MedlemDto IMedlemQueries.HentMedlem(string isbn)
         {
-            var medlem = _db.Medlemmer.Find(id);
+            var medlem = _db.Medlemmer.Find(isbn);
             if (medlem == null) return null;
 
-            return new MedlemDto(medlem.Id, medlem.Navn);
+            return new MedlemDto(medlem.Medlemsnummer, medlem.Navn);
         }
 
-        IEnumerable<MedlemDto> IMedlemQueries.GetMedlemmer()
+        IEnumerable<MedlemDto> IMedlemQueries.HentMedlemmer()
         {
-            return _db.Medlemmer.Select(m => new MedlemDto(m.Id, m.Navn)).ToList();
+            return _db.Medlemmer.Select(m => new MedlemDto(m.Medlemsnummer, m.Navn)).ToList();
         }
     }
 }
