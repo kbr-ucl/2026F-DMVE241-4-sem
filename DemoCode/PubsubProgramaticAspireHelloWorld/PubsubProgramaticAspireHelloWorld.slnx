@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="myComponents/pubsub.yaml" />
+  </Folder>
+  <Project Path="Hello.Crosscut/Hello.Crosscut.csproj" />
+  <Project Path="HelloWorld.Publish/HelloWorld.Publish.csproj" />
+  <Project Path="HelloWorld.Subscribe/HelloWorld.Subscribe.csproj" />
+  <Project Path="PubsubProgramaticAspireHelloWorld.AppHost/PubsubProgramaticAspireHelloWorld.AppHost.csproj" Id="619b574c-77b7-4a79-b2d8-e10bfc42422b" />
+  <Project Path="PubsubProgramaticAspireHelloWorld.ServiceDefaults/PubsubProgramaticAspireHelloWorld.ServiceDefaults.csproj" />
+</Solution>

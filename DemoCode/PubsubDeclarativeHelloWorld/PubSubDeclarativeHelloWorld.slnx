@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Commands.md" />
+    <File Path="dapr.yaml" />
+    <File Path="myComponents/pubsub.yaml" />
+    <File Path="myComponents/subscription.yaml" />
+  </Folder>
+  <Project Path="Hello.Crosscut/Hello.Crosscut.csproj" />
+  <Project Path="HelloWorld.Publish/HelloWorld.Publish.csproj" />
+  <Project Path="HelloWorld.Subscribe/HelloWorld.Subscribe.csproj" />
+</Solution>
