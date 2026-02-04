@@ -18,7 +18,7 @@ public class ServiceBProxy : IServiceBProxy
 
     async Task<WeatherForecast[]> IServiceBProxy.GetWeatherForecast()
     {
-        var forecast = await _httpClient.GetFromJsonAsync<WeatherForecast[]>("/weatherforecast");
+        var forecast = await _httpClient.GetFromJsonAsync<WeatherForecast[]>("weatherforecast");
         if (forecast != null) return forecast;
         throw new Exception("Failed to retrieve weather forecast");
     }

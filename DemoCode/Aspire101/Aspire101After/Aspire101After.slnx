@@ -1,11 +1,7 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path="../../../Directory.Packages.props" />
-    <File Path="Aspire101After.AppHost/Aspire101Before.AppHost.csproj" />
-    <File Path="Aspire101After.ServiceDefaults/Aspire101Before.ServiceDefaults.csproj" />
   </Folder>
-  <Project Path="Aspire101After.AppHost/Aspire101After.AppHost.csproj" />
-  <Project Path="Aspire101After.ServiceA/Aspire101After.ServiceA.csproj" />
-  <Project Path="Aspire101After.ServiceB/Aspire101After.ServiceB.csproj" />
-  <Project Path="Aspire101After.ServiceDefaults/Aspire101After.ServiceDefaults.csproj" />
+  <Project Path="ServiceA/ServiceA.csproj" />
+  <Project Path="ServiceB/ServiceB.csproj" />
 </Solution>
