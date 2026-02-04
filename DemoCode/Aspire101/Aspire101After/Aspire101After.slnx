@@ -2,6 +2,8 @@
   <Folder Name="/Solution Items/">
     <File Path="../../../Directory.Packages.props" />
   </Folder>
+  <Project Path="Aspire101After.AppHost/Aspire101After.AppHost.csproj" Id="67fef2e5-7519-475c-811c-a996703128de" />
+  <Project Path="Aspire101After.ServiceDefaults/Aspire101After.ServiceDefaults.csproj" />
   <Project Path="ServiceA/ServiceA.csproj" />
   <Project Path="ServiceB/ServiceB.csproj" />
 </Solution>

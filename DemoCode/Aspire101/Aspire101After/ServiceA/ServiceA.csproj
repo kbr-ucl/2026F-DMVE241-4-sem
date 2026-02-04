@@ -11,4 +11,8 @@
 		<PackageReference Include="Swashbuckle.AspNetCore" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Aspire101After.ServiceDefaults\Aspire101After.ServiceDefaults.csproj" />
+	</ItemGroup>
+
 </Project>

@@ -2,6 +2,8 @@ using ServiceA;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 // Add services to the container.
 // Add EndpointsApiExplorer and SwaggerGen for Swagger support
 builder.Services.AddEndpointsApiExplorer();
@@ -9,10 +11,12 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpClient<IServiceBProxy, ServiceBProxy>(client =>
 {
-    client.BaseAddress = new Uri("https://localhost:7233/");
+    client.BaseAddress = new Uri("http+https://serviceb/");
 });
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -22,7 +26,7 @@ if (app.Environment.IsDevelopment())
     // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.)
     app.UseSwaggerUI(options =>
     {
-        // Gør Swagger UI tilgængelig på roden (http://localhost:<port>/)
+        // GÃ¸r Swagger UI tilgÃ¦ngelig pÃ¥ roden (http://localhost:<port>/)
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
         options.RoutePrefix = string.Empty;
     });
