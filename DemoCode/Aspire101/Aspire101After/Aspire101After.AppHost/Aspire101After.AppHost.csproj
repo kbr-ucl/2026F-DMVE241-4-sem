@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ServiceA\ServiceA.csproj" />
-    <ProjectReference Include="..\ServiceB\ServiceB.csproj" />
+    <ProjectReference Include="..\Aspire101After.ServiceA\Aspire101After.ServiceA.csproj" />
+    <ProjectReference Include="..\Aspire101After.ServiceB\Aspire101After.ServiceB.csproj" />
   </ItemGroup>
 
 </Project>
