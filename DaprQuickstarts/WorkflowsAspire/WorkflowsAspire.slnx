@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="OrderProcessor\WorkflowApi.csproj" />
+  <Project Path="WorkflowsAspire.AppHost\WorkflowsAspire.AppHost.csproj" />
+  <Project Path="WorkflowsAspire.ServiceDefaults\WorkflowsAspire.ServiceDefaults.csproj" />
+</Solution>
