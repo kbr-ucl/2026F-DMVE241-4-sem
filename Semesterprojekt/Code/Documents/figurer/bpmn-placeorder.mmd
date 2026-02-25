@@ -1,0 +1,95 @@
+```mermaid
+---
+title: "BPMN Swimlane: PlaceOrder-flow"
+
+---
+
+%% Note: Mermaid does not natively support BPMN swimlanes.
+%% This uses a flowchart with subgraphs to approximate swimlanes.
+%% For true BPMN swimlanes, use the .drawio file.
+
+flowchart LR
+
+  subgraph Kunde["🟦 Kunde"]
+    direction LR
+    K1(("●")):::start --> K2["Vælg billetter<br>og bestil"]
+    K3["Modtag<br>bekræftelse"]
+  end
+
+  subgraph Ordering["🟧 Ordering"]
+    direction LR
+    O1["Opret ordre<br>(Created)"]
+    O_GW1{"Reservation<br>OK?"}
+    O_GW2{"Betaling<br>OK?"}
+    O2["Bekræft ordre<br>(Confirmed)"]
+    O3["Annullér ordre<br>(Cancelled)"]:::comp
+  end
+
+  subgraph Inventory["🟩 Inventory"]
+    direction LR
+    I1["Reserver<br>billetter"]
+    I2["Frigiv<br>billetter"]:::comp
+  end
+
+  subgraph Payment["🟥 Payment"]
+    direction LR
+    P1["Gennemfør<br>betaling"]
+  end
+
+  subgraph Notification["🟪 Notification"]
+    direction LR
+    N1["Send<br>bekræftelse"]
+    N2["Send<br>annullering"]:::comp
+  end
+
+  %% ============================================================
+  %% SUCCESS FLOW
+  %% ============================================================
+
+  K2 -.->|"Bestilling"| O1
+  O1 -->|"REST"| I1
+  I1 --> O_GW1
+  O_GW1 -->|"Ja → REST"| P1
+  P1 --> O_GW2
+  O_GW2 -->|"Ja"| O2
+  O2 -.->|"Pub/Sub"| N1
+  N1 -.->|"Besked"| K3
+
+  %% ============================================================
+  %% COMPENSATION FLOW
+  %% ============================================================
+
+  O_GW1 -..->|"Nej"| O3
+  O_GW2 -..->|"Nej"| I2
+  I2 -..->|"Kompensation"| O3
+  O3 -.->|"Pub/Sub"| N2
+
+  %% ============================================================
+  %% STYLES
+  %% ============================================================
+
+  classDef start fill:#27AE60,stroke:#1A1A1A,color:#fff
+  classDef comp fill:#fadbd8,stroke:#C0392B,color:#1A1A1A,stroke-dasharray: 5 5
+
+  style Kunde fill:#dae8fc,stroke:#2980B9,color:#2980B9
+  style Ordering fill:#fff2cc,stroke:#E67E22,color:#E67E22
+  style Inventory fill:#d5e8d4,stroke:#1ABC9C,color:#1ABC9C
+  style Payment fill:#f8cecc,stroke:#C0392B,color:#C0392B
+  style Notification fill:#e1d5e7,stroke:#8E44AD,color:#8E44AD
+
+  style K2 fill:#5DADE2,stroke:#2471A3,color:#fff
+  style K3 fill:#5DADE2,stroke:#2471A3,color:#fff
+  style O1 fill:#F5B041,stroke:#D68910,color:#1A1A1A
+  style O2 fill:#F5B041,stroke:#D68910,color:#1A1A1A
+  style O3 fill:#F5B041,stroke:#C0392B,color:#1A1A1A
+  style O_GW1 fill:#F1C40F,stroke:#333,color:#1A1A1A
+  style O_GW2 fill:#F1C40F,stroke:#333,color:#1A1A1A
+  style I1 fill:#48C9B0,stroke:#17A589,color:#1A1A1A
+  style I2 fill:#48C9B0,stroke:#C0392B,color:#1A1A1A
+  style P1 fill:#EC7063,stroke:#C0392B,color:#fff
+  style N1 fill:#AF7AC5,stroke:#8E44AD,color:#fff
+  style N2 fill:#AF7AC5,stroke:#8E44AD,color:#fff
+
+  linkStyle 8,9,10 stroke:#C0392B,stroke-width:2px
+```
+

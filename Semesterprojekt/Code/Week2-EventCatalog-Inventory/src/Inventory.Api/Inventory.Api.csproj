@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Inventory.Facade/Inventory.Facade.csproj" />
+    <ProjectReference Include="../Inventory.Infrastructure/Inventory.Infrastructure.csproj" />
+    <ProjectReference Include="../Inventory.UseCases/Inventory.UseCases.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapr.AspNetCore" />
+    <PackageReference Include="Scalar.AspNetCore" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+  </ItemGroup>
+</Project>

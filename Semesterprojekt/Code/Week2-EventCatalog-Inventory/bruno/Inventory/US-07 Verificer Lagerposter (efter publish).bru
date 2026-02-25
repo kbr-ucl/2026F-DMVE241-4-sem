@@ -1,0 +1,34 @@
+meta {
+  name: US-07 Verificer Lagerposter (efter publish)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{inventory_url}}/api/stock/event/{{eventId}}
+  body: none
+  auth: none
+}
+
+tests {
+  test("Status er 200 OK", function() {
+    expect(res.status).to.equal(200);
+  });
+
+  test("Lagerposter oprettet via pub/sub", function() {
+    expect(res.body).to.be.an("array");
+    expect(res.body).to.have.length.greaterThan(0);
+  });
+
+  test("Available matcher TotalCapacity", function() {
+    res.body.forEach(stock => {
+      expect(stock.available).to.equal(stock.totalCapacity);
+    });
+  });
+
+  test("Reserved er 0", function() {
+    res.body.forEach(stock => {
+      expect(stock.reserved).to.equal(0);
+    });
+  });
+}

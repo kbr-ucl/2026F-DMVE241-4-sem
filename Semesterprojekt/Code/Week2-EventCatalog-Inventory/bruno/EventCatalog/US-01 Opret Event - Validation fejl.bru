@@ -1,0 +1,27 @@
+meta {
+  name: US-01 Opret Event - Validation fejl
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{eventcatalog_url}}/api/events
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "",
+    "description": "Test",
+    "date": "2020-01-01T00:00:00Z",
+    "venue": "Test",
+    "ticketCategories": []
+  }
+}
+
+tests {
+  test("Afvises med fejlkode", function() {
+    expect(res.status).to.be.oneOf([400, 500]);
+  });
+}

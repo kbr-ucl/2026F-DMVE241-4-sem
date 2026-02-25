@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="src/EventCatalog.Api/EventCatalog.Api.csproj" />
+  <Project Path="src/EventCatalog.Domain/EventCatalog.Domain.csproj" />
+  <Project Path="src/EventCatalog.Facade/EventCatalog.Facade.csproj" />
+  <Project Path="src/EventCatalog.Infrastructure/EventCatalog.Infrastructure.csproj" />
+  <Project Path="src/EventCatalog.UseCases/EventCatalog.UseCases.csproj" />
+  <Project Path="src/TicketHub.AppHost/TicketHub.AppHost.csproj" />
+  <Project Path="src/TicketHub.ServiceDefaults/TicketHub.ServiceDefaults.csproj" />
+  <Project Path="test/EventCatalog.Domain.Tests/EventCatalog.Domain.Tests.csproj" />
+</Solution>

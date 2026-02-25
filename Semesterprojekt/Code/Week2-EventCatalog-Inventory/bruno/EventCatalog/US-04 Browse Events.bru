@@ -1,0 +1,25 @@
+meta {
+  name: US-04 Browse Events
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{eventcatalog_url}}/api/events
+  body: none
+  auth: none
+}
+
+vars:pre-request {
+  eventcatalog_url: https://localhost:51208
+}
+
+tests {
+  test("Status er 200 OK", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("Returnerer en liste af events", function() {
+    expect(res.body).to.be.an("array");
+  });
+}
