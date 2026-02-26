@@ -1,0 +1,55 @@
+meta {
+  name: US-12 Placer Bestilling
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{ordering_url}}/api/orders
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "eventId": "{{eventId}}",
+    "customerEmail": "kunde@example.com",
+    "lines": [
+      {
+        "categoryId": "{{categoryId}}",
+        "quantity": 2
+      }
+    ]
+  }
+}
+
+vars:pre-request {
+  eventId: 23b8683c-c8ac-4221-a7cb-6b9708a01d26
+}
+
+script:post-response {
+  if (res.status === 201) {
+    const body = res.getBody();
+    bru.setEnvVar("orderId", body.id);
+  }
+}
+
+tests {
+  test("Status er 201 Created", function() {
+    expect(res.status).to.equal(201);
+  });
+  
+  test("Ordre har status Created", function() {
+    expect(res.body.status).to.equal("Created");
+  });
+  
+  test("Ordre har ordrelinjer med pris fra EventCatalog", function() {
+    expect(res.body.lines).to.have.length.greaterThan(0);
+    expect(res.body.lines[0].unitPrice).to.be.a("number");
+  });
+  
+  test("TotalAmount er beregnet", function() {
+    expect(res.body.totalAmount).to.be.a("number");
+    expect(res.body.totalAmount).to.be.greaterThan(0);
+  });
+}

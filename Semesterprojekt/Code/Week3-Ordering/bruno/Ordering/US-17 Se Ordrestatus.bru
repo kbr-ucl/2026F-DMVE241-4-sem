@@ -1,0 +1,38 @@
+meta {
+  name: US-17 Se Ordrestatus
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{ordering_url}}/api/orders/{{orderId}}
+  body: none
+  auth: none
+}
+
+vars:pre-request {
+  orderId: 2ed4f8d3-5a76-4334-a7e4-bb42da550914
+}
+
+tests {
+  test("Status er 200 OK", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("Ordre indeholder alle felter", function() {
+    expect(res.body).to.have.property("id");
+    expect(res.body).to.have.property("eventId");
+    expect(res.body).to.have.property("customerEmail");
+    expect(res.body).to.have.property("status");
+    expect(res.body).to.have.property("totalAmount");
+    expect(res.body).to.have.property("createdAt");
+    expect(res.body).to.have.property("lines");
+  });
+  
+  test("Ordrelinjer har kategorinavn, antal og enhedspris", function() {
+    const line = res.body.lines[0];
+    expect(line).to.have.property("categoryName");
+    expect(line).to.have.property("quantity");
+    expect(line).to.have.property("unitPrice");
+  });
+}

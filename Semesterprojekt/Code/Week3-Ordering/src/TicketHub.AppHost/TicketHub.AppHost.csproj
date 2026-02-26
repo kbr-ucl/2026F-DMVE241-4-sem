@@ -6,9 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" />
     <PackageReference Include="CommunityToolkit.Aspire.Hosting.Dapr" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../EventCatalog.Api/EventCatalog.Api.csproj" />
+    <ProjectReference Include="../Inventory.Api/Inventory.Api.csproj" />
+    <ProjectReference Include="../Ordering.Api/Ordering.Api.csproj" />
   </ItemGroup>
 </Project>

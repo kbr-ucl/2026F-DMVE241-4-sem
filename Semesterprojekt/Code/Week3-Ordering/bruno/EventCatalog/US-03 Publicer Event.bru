@@ -1,0 +1,21 @@
+meta {
+  name: US-03 Publicer Event
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{eventcatalog_url}}/api/events/{{eventId}}/publish
+  body: none
+  auth: none
+}
+
+vars:pre-request {
+  eventId: 23b8683c-c8ac-4221-a7cb-6b9708a01d26
+}
+
+tests {
+  test("Status er 204 No Content", function() {
+    expect(res.status).to.equal(204);
+  });
+}
