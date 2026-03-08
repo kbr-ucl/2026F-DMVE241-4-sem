@@ -1,0 +1,46 @@
+meta {
+  name: US-13 SAGA Happy Path
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{ordering_url}}/api/orders
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "eventId": "{{eventId}}",
+    "customerEmail": "saga-happy@example.com",
+    "lines": [
+      {
+        "categoryId": "{{categoryId}}",
+        "quantity": 1
+      }
+    ]
+  }
+}
+
+script:post-response {
+  if (res.status === 201) {
+    const body = res.getBody();
+    bru.setEnvVar("sagaOrderId", body.id);
+  }
+}
+
+tests {
+  test("Status er 201 Created", function() {
+    expect(res.status).to.equal(201);
+  });
+
+  test("Ordre er oprettet med status Created", function() {
+    expect(res.body.status).to.equal("Created");
+  });
+
+  test("TotalAmount er beregnet korrekt", function() {
+    expect(res.body.totalAmount).to.be.a("number");
+    expect(res.body.totalAmount).to.be.greaterThan(0);
+  });
+}

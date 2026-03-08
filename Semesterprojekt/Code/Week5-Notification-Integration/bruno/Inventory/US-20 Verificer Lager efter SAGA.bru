@@ -1,0 +1,30 @@
+meta {
+  name: US-20 Verificer Lager efter SAGA
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{inventory_url}}/api/stock/event/{{eventId}}
+  body: none
+  auth: none
+}
+
+tests {
+  test("Status er 200 OK", function() {
+    expect(res.status).to.equal(200);
+  });
+
+  test("Lagerstatus er opdateret efter SAGA", function() {
+    expect(res.body).to.be.an("array");
+    expect(res.body).to.have.length.greaterThan(0);
+  });
+
+  test("Reserved og Available reflekterer reservationer", function() {
+    const stock = res.body[0];
+    expect(stock).to.have.property("available");
+    expect(stock).to.have.property("reserved");
+    expect(stock).to.have.property("totalCapacity");
+    expect(stock.available + stock.reserved).to.equal(stock.totalCapacity);
+  });
+}

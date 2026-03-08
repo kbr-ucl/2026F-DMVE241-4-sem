@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../EventCatalog.Domain/EventCatalog.Domain.csproj" />
+    <ProjectReference Include="../EventCatalog.UseCases/EventCatalog.UseCases.csproj" />
+    <ProjectReference Include="../EventCatalog.Facade/EventCatalog.Facade.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="Dapr.Client" />
+  </ItemGroup>
+</Project>

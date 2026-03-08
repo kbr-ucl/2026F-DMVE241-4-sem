@@ -1,0 +1,25 @@
+meta {
+  name: US-10 Se Lagerstatus
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{inventory_url}}/api/stock/event/{{eventId}}
+  body: none
+  auth: none
+}
+
+tests {
+  test("Status er 200 OK", function() {
+    expect(res.status).to.equal(200);
+  });
+
+  test("Indeholder kategorinavn, available, reserved og totalCapacity", function() {
+    const stock = res.body[0];
+    expect(stock).to.have.property("categoryName");
+    expect(stock).to.have.property("available");
+    expect(stock).to.have.property("reserved");
+    expect(stock).to.have.property("totalCapacity");
+  });
+}

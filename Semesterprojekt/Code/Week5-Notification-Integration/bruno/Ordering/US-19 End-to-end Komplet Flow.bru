@@ -1,0 +1,45 @@
+meta {
+  name: US-19 End-to-end Komplet Flow
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{ordering_url}}/api/orders
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "eventId": "{{eventId}}",
+    "customerEmail": "e2e-test@example.com",
+    "lines": [
+      {
+        "categoryId": "{{categoryId}}",
+        "quantity": 1
+      }
+    ]
+  }
+}
+
+script:post-response {
+  if (res.status === 201) {
+    const body = res.getBody();
+    bru.setEnvVar("e2eOrderId", body.id);
+  }
+}
+
+tests {
+  test("Status er 201 Created", function() {
+    expect(res.status).to.equal(201);
+  });
+
+  test("Ordre oprettet - SAGA workflow startet", function() {
+    expect(res.body.status).to.equal("Created");
+  });
+
+  test("Ordre har korrekt kundemail", function() {
+    expect(res.body.customerEmail).to.equal("e2e-test@example.com");
+  });
+}

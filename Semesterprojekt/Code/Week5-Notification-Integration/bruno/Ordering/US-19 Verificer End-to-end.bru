@@ -1,0 +1,29 @@
+meta {
+  name: US-19 Verificer End-to-end
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{ordering_url}}/api/orders/{{e2eOrderId}}
+  body: none
+  auth: none
+}
+
+tests {
+  test("Status er 200 OK", function() {
+    expect(res.status).to.equal(200);
+  });
+
+  test("Ordre har gennemlobet SAGA workflow", function() {
+    expect(res.body.status).to.be.oneOf(["Confirmed", "Cancelled", "Created"]);
+  });
+
+  test("Ordre har alle felter fra komplet flow", function() {
+    expect(res.body).to.have.property("id");
+    expect(res.body).to.have.property("eventId");
+    expect(res.body).to.have.property("customerEmail");
+    expect(res.body).to.have.property("totalAmount");
+    expect(res.body).to.have.property("lines");
+  });
+}

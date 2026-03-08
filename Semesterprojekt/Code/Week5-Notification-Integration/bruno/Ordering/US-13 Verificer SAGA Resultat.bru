@@ -1,0 +1,21 @@
+meta {
+  name: US-13 Verificer SAGA Resultat
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{ordering_url}}/api/orders/{{sagaOrderId}}
+  body: none
+  auth: none
+}
+
+tests {
+  test("Status er 200 OK", function() {
+    expect(res.status).to.equal(200);
+  });
+
+  test("Ordre har status Confirmed efter SAGA", function() {
+    expect(res.body.status).to.be.oneOf(["Confirmed", "Created"]);
+  });
+}

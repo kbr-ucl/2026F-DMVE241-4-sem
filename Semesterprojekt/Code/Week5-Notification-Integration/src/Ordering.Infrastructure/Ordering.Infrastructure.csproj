@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Ordering.Domain/Ordering.Domain.csproj" />
+    <ProjectReference Include="../Ordering.UseCases/Ordering.UseCases.csproj" />
+    <ProjectReference Include="../Ordering.Facade/Ordering.Facade.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="Dapr.Client" />
+    <PackageReference Include="Dapr.Workflow" />
+  </ItemGroup>
+</Project>

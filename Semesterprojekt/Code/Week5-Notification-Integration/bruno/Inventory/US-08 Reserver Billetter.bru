@@ -1,0 +1,30 @@
+meta {
+  name: US-08 Reserver Billetter
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{inventory_url}}/api/stock/reserve
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "orderId": "{{orderId}}",
+    "eventId": "{{eventId}}",
+    "lines": [
+      {
+        "categoryId": "{{categoryId}}",
+        "quantity": 2
+      }
+    ]
+  }
+}
+
+tests {
+  test("Status er 200 OK", function() {
+    expect(res.status).to.equal(200);
+  });
+}
