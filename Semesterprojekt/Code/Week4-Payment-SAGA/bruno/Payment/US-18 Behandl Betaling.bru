@@ -1,0 +1,32 @@
+meta {
+  name: US-18 Behandl Betaling
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{payment_url}}/api/payment/process
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "orderId": "{{orderId}}",
+    "amount": 5000.00,
+    "customerEmail": "kunde@example.com"
+  }
+}
+
+tests {
+  test("Status er 200 OK", function() {
+    expect(res.status).to.equal(200);
+  });
+
+  test("Betaling returnerer success og transactionId", function() {
+    expect(res.body).to.have.property("success");
+    expect(res.body.success).to.equal(true);
+    expect(res.body).to.have.property("transactionId");
+    expect(res.body.transactionId).to.be.a("string");
+  });
+}

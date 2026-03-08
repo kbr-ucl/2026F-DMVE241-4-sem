@@ -1,0 +1,60 @@
+meta {
+  name: US-01 Opret Event
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{eventcatalog_url}}/api/events
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Roskilde Festival 2025",
+    "description": "Nordens stoerste musikfestival",
+    "date": "2025-12-01T18:00:00Z",
+    "venue": "Roskilde",
+    "ticketCategories": [
+      {
+        "name": "Standard",
+        "price": 2500.00,
+        "capacity": 1000
+      },
+      {
+        "name": "VIP",
+        "price": 5000.00,
+        "capacity": 200
+      }
+    ]
+  }
+}
+
+script:post-response {
+  if (res.status === 201) {
+    const body = res.getBody();
+    bru.setEnvVar("eventId", body.id);
+    if (body.ticketCategories && body.ticketCategories.length > 0) {
+      bru.setEnvVar("categoryId", body.ticketCategories[0].id);
+    }
+  }
+}
+
+tests {
+  test("Status er 201 Created", function() {
+    expect(res.status).to.equal(201);
+  });
+
+  test("Event har status Draft", function() {
+    expect(res.body.status).to.equal("Draft");
+  });
+
+  test("Event har unikt ID", function() {
+    expect(res.body.id).to.be.a("string");
+  });
+
+  test("Event har billetkategorier", function() {
+    expect(res.body.ticketCategories).to.have.length(2);
+  });
+}

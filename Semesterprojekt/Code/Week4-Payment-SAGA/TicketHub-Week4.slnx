@@ -1,0 +1,25 @@
+<Solution>
+  <Project Path="src/EventCatalog.Api/EventCatalog.Api.csproj" />
+  <Project Path="src/EventCatalog.Domain/EventCatalog.Domain.csproj" />
+  <Project Path="src/EventCatalog.Facade/EventCatalog.Facade.csproj" />
+  <Project Path="src/EventCatalog.Infrastructure/EventCatalog.Infrastructure.csproj" />
+  <Project Path="src/EventCatalog.UseCases/EventCatalog.UseCases.csproj" />
+  <Project Path="src/Inventory.Api/Inventory.Api.csproj" />
+  <Project Path="src/Inventory.Domain/Inventory.Domain.csproj" />
+  <Project Path="src/Inventory.Facade/Inventory.Facade.csproj" />
+  <Project Path="src/Inventory.Infrastructure/Inventory.Infrastructure.csproj" />
+  <Project Path="src/Inventory.UseCases/Inventory.UseCases.csproj" />
+  <Project Path="src/Ordering.Api/Ordering.Api.csproj" />
+  <Project Path="src/Ordering.Domain/Ordering.Domain.csproj" />
+  <Project Path="src/Ordering.Facade/Ordering.Facade.csproj" />
+  <Project Path="src/Ordering.Infrastructure/Ordering.Infrastructure.csproj" />
+  <Project Path="src/Ordering.UseCases/Ordering.UseCases.csproj" />
+  <Project Path="src/Payment.Api/Payment.Api.csproj" />
+  <Project Path="src/Payment.Facade/Payment.Facade.csproj" />
+  <Project Path="src/Payment.UseCases/Payment.UseCases.csproj" />
+  <Project Path="src/TicketHub.AppHost/TicketHub.AppHost.csproj" />
+  <Project Path="src/TicketHub.ServiceDefaults/TicketHub.ServiceDefaults.csproj" />
+  <Project Path="test/EventCatalog.Domain.Tests/EventCatalog.Domain.Tests.csproj" />
+  <Project Path="test/Inventory.Domain.Tests/Inventory.Domain.Tests.csproj" />
+  <Project Path="test/Ordering.Domain.Tests/Ordering.Domain.Tests.csproj" />
+</Solution>

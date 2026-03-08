@@ -1,0 +1,17 @@
+meta {
+  name: US-17 Ordre ikke fundet
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{ordering_url}}/api/orders/00000000-0000-0000-0000-000000000000
+  body: none
+  auth: none
+}
+
+tests {
+  test("Returnerer 404 Not Found", function() {
+    expect(res.status).to.equal(404);
+  });
+}

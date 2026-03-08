@@ -1,0 +1,26 @@
+meta {
+  name: US-05 Se Event Detaljer
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{eventcatalog_url}}/api/events/{{eventId}}
+  body: none
+  auth: none
+}
+
+tests {
+  test("Status er 200 OK", function() {
+    expect(res.status).to.equal(200);
+  });
+
+  test("Event har status Published", function() {
+    expect(res.body.status).to.equal("Published");
+  });
+
+  test("Event har billetkategorier med priser", function() {
+    expect(res.body.ticketCategories).to.have.length.greaterThan(0);
+    expect(res.body.ticketCategories[0].price).to.be.a("number");
+  });
+}
