@@ -1,3 +1,4 @@
+using Dapr.Client;
 using Scalar.AspNetCore;
 using Ordering.Facade.Interfaces;
 using Ordering.Infrastructure.ExternalServices;
@@ -16,6 +17,8 @@ builder.Services.AddScoped<IPlaceOrderUseCase, PlaceOrderUseCase>();
 builder.Services.AddScoped<IOrderQueries, OrderQueriesImpl>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IEventCatalogService, DaprEventCatalogService>();
+builder.Services.AddKeyedSingleton<HttpClient>("eventcatalog", (_, _) =>
+    DaprClient.CreateInvokeHttpClient("eventcatalog"));
 builder.Services.AddDaprClient();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
